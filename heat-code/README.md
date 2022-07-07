@@ -1,19 +1,11 @@
-# CompLC
-Competitive Leetcoding is a group project about making a more competitive framework for practicing for interviews
-members:
-- Thomas
-- Isha
-- Olivia
-- Alexander
+# Getting Started with Create React App
 
-[Mockups](https://oliviawong314942.invisionapp.com/freehand/HeatCode-JLGHw0Ciq?dsid_h=39b7368f5671a78357590a4db28bacd025cf0ac5b9b7484a7b8c9695fc0ad4ec&uid_h=3ebc275bd3372d8c081fed868194791526e274135924821e7731efa95f5000c0)
-
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
-All the website code lives in `heat-code`. 
+
 In the project directory, you can run:
 
-### `cd heat-code`
 ### `npm start`
 
 Runs the app in the development mode.\
