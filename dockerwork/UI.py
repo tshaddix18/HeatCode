@@ -31,20 +31,20 @@ def home():
     if request.method == 'GET':
         try:
             print("posted!")
-            url = request.form["username"]
+            url = request.args["username"]
            # r = form.username.gettext()
             r = requests.get(url)
             
             
             
-        except:
-            print("error!")
+        except Exception as E:
+            print(E)
         try:
             with open("src/test.py",'w') as file:
                  for string in r.text:
                     file.write(string)
             Filetesting.run_DOCKER()
         except:
-            print("nope")
+            print("was not")
   
     return render_template("home.html", title='home',form = form)
