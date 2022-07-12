@@ -1,20 +1,13 @@
 // Problems.js
 // Currently the problems page
-import {
-  Table,
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  Button,
-} from "reactstrap";
+import { Table, Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 const WelcomeCard = () => {
   return (
-    <div>
+    <div class="m-4">
       <Card outline body>
         <CardBody>
-          <CardTitle tag="h5">Welcome to HeatCode☄️</CardTitle>
+          <CardTitle tag="h4">Welcome to HeatCode☄️</CardTitle>
           <CardText>
             We're here to help make your interview grind process more
             competitive and enjoyable. Select a problem to solve while competing
@@ -27,69 +20,41 @@ const WelcomeCard = () => {
 };
 
 const ProblemTable = () => {
-  return <Table>
-  <thead>
-    <tr>
-      <th>
-        #
-      </th>
-      <th>
-        Problem
-      </th>
-      <th>
-        Difficulty 
-      </th>
-      <th>
-        Tags
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">
-        1
-      </th>
-      <td>
-        Palindrome number
-      </td>
-      <td>
-        Otto
-      </td>
-      <td>
-        @mdo
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        2
-      </th>
-      <td>
-        Jacob
-      </td>
-      <td>
-        Thornton
-      </td>
-      <td>
-        @fat
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        3
-      </th>
-      <td>
-        Larry
-      </td>
-      <td>
-        the Bird
-      </td>
-      <td>
-        @twitter
-      </td>
-    </tr>
-  </tbody>
-</Table>
-}
+  return (
+    <div class="m-4">
+      <Table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Problem</th>
+            <th>Difficulty</th>
+            <th>Tags</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Palindrome number</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </Table>
+    </div>
+  );
+};
 
 export function Problems() {
   return (
@@ -100,4 +65,3 @@ export function Problems() {
     </div>
   );
 }
-
