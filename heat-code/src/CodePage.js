@@ -4,6 +4,7 @@ import { okaidia } from "@uiw/codemirror-theme-okaidia";
 import CodeMirror from "@uiw/react-codemirror";
 import { python } from "@codemirror/lang-python";
 // https://uiwjs.github.io/react-codemirror/
+// https://stackoverflow.com/questions/57024486/react-get-codemirror-value-onclick
 export const CodePage = () => {
   return (
     <>
