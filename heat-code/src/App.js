@@ -11,6 +11,7 @@ import {
   Collapse,
 } from "reactstrap";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link as RRNavLink } from "react-router-dom";
 
 export const Navigation = () => {
   return (
@@ -21,49 +22,48 @@ export const Navigation = () => {
         <Collapse navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink tag={Link} to="/code">
+              <NavLink tag={RRNavLink} to="/code">
                 Code
               </NavLink>
             </NavItem>
-            {/*
-              <NavItem>
-                <NavLink to="/login">Login</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/tshaddix18/HeatCode">
-                  GitHub
-                </NavLink>
-              </NavItem>
-              */}
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/login">
+                Login
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/tshaddix18/HeatCode">
+                GitHub
+              </NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
     </div>
   );
 };
+// Credit for reactstrap/navlink code
+// https://github.com/reactstrap/reactstrap/issues/1285
 export default function App() {
+  document.title = "HeatCode"
   return (
     <Router>
       <Navigation />
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/code">Code</Link>
-            </li>
-          </ul>
-        </nav>
 
-        {/* A <Routes> looks through its children <Route>s and
+      {/* A <Routes> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Routes>
-          <Route path="/code" element={<CodePage />} />
-          <Route path="/" element={<Problems />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/code" element={<CodePage />} />
+        <Route path="/" element={<Problems />} />
+        <Route
+          path="/login"
+          element={
+            <div>
+              <h1>Login</h1>{" "}
+            </div>
+          }
+        />
+      </Routes>
     </Router>
   );
 }
