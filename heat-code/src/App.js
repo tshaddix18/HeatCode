@@ -1,12 +1,7 @@
-// App.js
-// Currently the problems page
+import { Problems } from "./Problems";
+import { CodePage } from "./CodePage";
+import React from "react";
 import {
-  Table,
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  Button,
   Navbar,
   NavbarBrand,
   NavbarToggler,
@@ -15,25 +10,10 @@ import {
   Nav,
   Collapse,
 } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-const WelcomeCard = () => {
-  return (
-    <div>
-      <Card outline body>
-        <CardBody>
-          <CardTitle tag="h5">Welcome to HeatCode☄️</CardTitle>
-          <CardText>
-            We're here to help make your interview grind process more
-            competitive and enjoyable. Select a problem to solve while competing
-            head-to-head with someone.
-          </CardText>
-        </CardBody>
-      </Card>
-    </div>
-  );
-};
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link as RRNavLink } from "react-router-dom";
 
-const Navigation = () => {
+export const Navigation = () => {
   return (
     <div>
       <Navbar color="light" expand="md" light>
@@ -42,7 +22,14 @@ const Navigation = () => {
         <Collapse navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="/login/">Login</NavLink>
+              <NavLink tag={RRNavLink} to="/code">
+                Code
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/login">
+                Login
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="https://github.com/tshaddix18/HeatCode">
@@ -55,80 +42,28 @@ const Navigation = () => {
     </div>
   );
 };
-const Problems = () => {
-  return <Table>
-  <thead>
-    <tr>
-      <th>
-        #
-      </th>
-      <th>
-        Problem
-      </th>
-      <th>
-        Difficulty 
-      </th>
-      <th>
-        Tags
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">
-        1
-      </th>
-      <td>
-        Palindrome number
-      </td>
-      <td>
-        Otto
-      </td>
-      <td>
-        @mdo
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        2
-      </th>
-      <td>
-        Jacob
-      </td>
-      <td>
-        Thornton
-      </td>
-      <td>
-        @fat
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">
-        3
-      </th>
-      <td>
-        Larry
-      </td>
-      <td>
-        the Bird
-      </td>
-      <td>
-        @twitter
-      </td>
-    </tr>
-  </tbody>
-</Table>
-}
-
-function App() {
+// Credit for reactstrap/navlink code
+// https://github.com/reactstrap/reactstrap/issues/1285
+export default function App() {
+  document.title = "HeatCode"
   return (
-    <div className="App">
+    <Router>
       <Navigation />
-      <WelcomeCard />
-      <Problems />
-      <p>©2022 Atomic</p>
-    </div>
+
+      {/* A <Routes> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+      <Routes>
+        <Route path="/code" element={<CodePage />} />
+        <Route path="/" element={<Problems />} />
+        <Route
+          path="/login"
+          element={
+            <div>
+              <h1>Login</h1>{" "}
+            </div>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;
