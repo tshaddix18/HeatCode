@@ -4,6 +4,7 @@ import timeit
 import time
 import json
 from subprocess import Popen, PIPE
+from datetime import datetime
 
 #from sqlalchemy import true
 
@@ -25,7 +26,7 @@ def run_DOCKER():
         
         subprocess.call("docker run dockerbuild-python-docker",shell=True)
         
-    time_taken =  (time.time() - time_start)/10
+    time_taken =  (time.time() - time_start)
     print("the total time is "+ str(time_taken))
     with open("src/output.txt",'wb') as file:
         
@@ -38,9 +39,14 @@ def run_DOCKER():
         integern =  ping.index("StartedAt")
         integerend =  ping.index("FinishedAt")
         print("Found at "+str(integern))
-        print(ping[integern+13:integern+41])
-        print("\n" + ping[integerend+14:integerend+42] )
-
+        print(ping[integern+24:integern+41])
+        print("\n" + ping[integerend+25:integerend+42])
+        item1 = datetime.strptime(ping[integern+24:integern+39],"%H:%M:%S.%f")
+        print("\nthe datetime 1st object is "+str(item1))
+        item2 = datetime.strptime(ping[integerend+25:integerend+40],"%H:%M:%S.%f")
+        print("\nthe datetime 2nd object is "+str(item2))
+        timechange = item2-item1
+        print("the total time change is " + str(timechange.total_seconds()))
     with open("src/ping.txt",'w') as file:
         
         file.write(ping)
@@ -50,10 +56,10 @@ def run_DOCKER():
     #subprocess.run("docker container logs --timestamps test",shell=True)
     #docker container logs --timestamps test
     times = subprocess.run("docker container inspect test2", shell=True,capture_output=True).stdout
-    my_json = times.decode('utf8').replace("'", '"')
+    #my_json = times.decode('utf8').replace("'", '"')
     #newtime = str(times).replace("'","'""'")
-    y = json.loads(my_json)
-    s = json.dumps(y, indent=4, sort_keys=True)
+    #y = json.loads(my_json)
+    #s = json.dumps(y, indent=4, sort_keys=True)
     #print(y["StartedAt"])
    # for value in s:
        # print(value)
