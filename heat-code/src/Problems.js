@@ -20,6 +20,11 @@ const WelcomeCard = () => {
     </div>
   );
 };
+const peppers = {
+  Easy: "🌶",
+  Medium: "🌶🌶",
+  Hard: "🌶🌶🌶🌶",
+};
 
 const ProblemTable = () => {
   console.log(problemInfo);
@@ -28,42 +33,22 @@ const ProblemTable = () => {
       <tr>
         <th scope="row">{prob.Number}</th>
         <td>{prob.Problem}</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <td>{peppers[prob.Difficulty]}</td>
       </tr>
     );
   });
   return (
     <div class="m-4">
       <Table>
-        {problems}
         <thead>
           <tr>
             <th>#</th>
             <th>Problem</th>
             <th>Difficulty</th>
-            <th>Tags</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Palindrome number</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+        {problems}
         </tbody>
       </Table>
     </div>

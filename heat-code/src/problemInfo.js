@@ -2,7 +2,7 @@ export default {
   problemInfo: [
     {
       Number: "1",
-      Diffculty: "Easy",
+      Difficulty: "Easy",
       Problem:
         "Given a string s, find the length of the longest substring without repeating characters.",
       "Example 1":
@@ -39,7 +39,7 @@ export default {
 
     {
       Number: "2",
-      Diffculty: "Easy",
+      Difficulty: "Easy",
       Problem:
         "Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.",
       "Example 1":
@@ -76,7 +76,7 @@ export default {
 
     {
       Number: "3",
-      Diffculty: "Medium",
+      Difficulty: "Medium",
       Problem:
         "Given an array of strings words and an integer k, return the k most frequent strings. \n Return the answer sorted by the frequency from highest to lowest. Sort the words with the same frequency by their lexicographical order.",
       "Example 1":
@@ -112,7 +112,7 @@ export default {
 
     {
       Number: "4",
-      Diffculty: "Medium",
+      Difficulty: "Medium",
       Problem:
         "Given an integer array nums of unique elements, return all possible subsets (the power set). \n The solution set must not contain duplicate subsets. Return the solution in any order.",
       "Example 1":
@@ -136,7 +136,7 @@ export default {
 
     {
       Number: "5",
-      Diffculty: "Hard",
+      Difficulty: "Hard",
       Problem:
         "Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where: \n \n '.' Matches any single character.​​​​ \n '*' Matches zero or more of the preceding element. \nThe matching should cover the entire input string (not partial).",
       "Example 1": 'Input: s = "aa", p = "a" \n Output: false',
@@ -160,7 +160,7 @@ export default {
 
     {
       Number: "6",
-      Diffculty: "Hard",
+      Difficulty: "Hard",
       Problem:
         "Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.",
       "Example 1": 'Input: s = "(()" \n Output: 2',
