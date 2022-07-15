@@ -1,7 +1,9 @@
+from test import problemOne
 import test
 import time
 
 if test.one == True:
+    test.problemOne()
     counter = 0
     if test.output1 == 3:
         counter = 1
@@ -21,6 +23,7 @@ if test.one == True:
     print(counter, "/5 tests passed\n")
 
 if test.two == True:
+    test.problemTwo()
     counter = 0
     if test.output1 == 2:
         counter = 1
