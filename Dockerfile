@@ -5,6 +5,7 @@ WORKDIR /src
 
 COPY dockerwork/src/main.py ./
 COPY dockerwork/src/test.py ./
+COPY dockerwork/src/usercode.py ./
 
 
 
