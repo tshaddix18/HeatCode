@@ -1,100 +1,97 @@
-import test
+from flask import Flask
+from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
+from flask_sqlalchemy import SQLAlchemy
 
-if test.one == True:
-    counter = 0
-    if test.output1 == 3:
-        counter = 1
+app = Flask(__name__)
+api = Api(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db = SQLAlchemy(app)
 
-    if test.output2 == 1:
-        counter += 1
-    
-    if test.output3 == 3:
-        counter += 1
-    
-    if test.output4 == 5:
-        counter += 1
+class VideoModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    views = db.Column(db.Integer, nullable=False)
+    likes = db.Column(db.Integer, nullable=False)
 
-    if test.output5 == 6:
-        counter += 1
+    def __repr__(self):
+        return f"Video(name={name}, views={views}, likes={likes}"
 
-    print(counter, "/5 tests passed\n")
+#only use once
+#db.create_all()
 
-if test.two == True:
-    counter = 0
-    if test.output1 == 2:
-        counter = 1
+video_put_args = reqparse.RequestParser()
+video_put_args.add_argument("name", type=str, help="Name of the video", required=True)
+video_put_args.add_argument("views", type=int, help="Views of the video", required=True)
+video_put_args.add_argument("likes", type=int, help="Likes on the video", required=True)
 
-    if test.output2 == 2:
-        counter += 1
-    
-    if test.output3 == 8:
-        counter += 1
-    
-    if test.output4 == 0:
-        counter += 1
+# videos = {}
 
-    if test.output5 == 6:
-        counter += 1
+video_update_args = reqparse.RequestParser()
+video_update_args.add_argument("name", type=str, help="Name of the video")
+video_update_args.add_argument("views", type=int, help="Views of the video")
+video_update_args.add_argument("likes", type=int, help="Likes on the video")
 
-    print(counter, "/5 tests passed\n")
+resource_fields = {
+    'id': fields.Integer,
+    'name': fields.String,
+    'views': fields.Integer,
+    'likes': fields.Integer
+}
 
-if test.three == True:
-    counter = 0
-    if test.output1 == ["i","love"]:
-        counter = 1
+def abort_if_notexist(video_id):
+    if video_id not in videos:
+        abort(404, message="Video id is not valid")
 
-    if test.output2 == ["the","is","sunny","day"]:
-        counter += 1
-    
-    if test.output3 == ["i", "pizza"]:
-        counter += 1
-    
-    if test.output4 == ["one","sunny"]:
-        counter += 1
+def abort_if_exists(video_id):
+    if video_id in videos:
+        abort(409, message="Video already exists")
 
-    if test.output5 == ["under","the", "weather"]:
-        counter += 1
+class Video(Resource):
+    @marshal_with(resource_fields)
+    def get(self, video_id):
+        result = VideoModel.query.filter_by(id=video_id).first()
+        if not result:
+            abort(404, message="Could not find video with that id")
+        return 
 
-    print(counter, "/5 tests passed\n")
+    @marshal_with(resource_fields)
+    def put(self, video_id):
+        args = video_put_args.parse_args()
+        result = VideoModel.query.filter_by(id=video_id).first()
+        if result:
+            abort(409, message="Video id taken")
+        video = VideoModel(id=video_id, name=args['name'], views=args['views'], likes=args['likes'])
+        db.session.add(video)
+        db.session.commit()
+        return video, 201
 
-if test.four == True:
-    counter = 0
-    if test.output1 == [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]:
-        counter = 1
+    @marshal_with(resource_fields)
+    def patch(self, video_id):
+        args = video_update_args.parse_args()
+        result = VideoModel.query.filter_by(id=video_id).first()
+        if not result:
+            abort(404, message="Video doesn't exist")
+        if args['name']:
+            result.name = args['name']
+        if args['views']:
+            result.views = args['views']
+        if args['likes']:
+            result.likes = args['likes']
 
-    if test.output2 == [[],[0]]:
-        counter += 1
-    
-    if test.output3 == [[], [2], [3], [2,3]]:
-        counter += 1
-    
-    print(counter, "/3 tests passed\n")
+        db.session.commit()
+        return result
 
-if test.five == True:
-    counter = 0
-    if test.output1 == "false":
-        counter = 1
+    def delete(self, video_id):
+        abort_if_notexist(video_id)
+        del videos[video_id]
+        return '', 204
 
-    if test.output2 == "true":
-        counter += 1
-    
-    if test.output3 == "true":
-        counter += 1
-    
-    print(counter, "/3 tests passed\n")
 
-if test.six == True:
-    counter = 0
-    if test.output1 == "false":
-        counter = 1
+#adds hello world as a resource at url /helloworld
+api.add_resource(Video, "/video/<int:video_id>")
 
-    if test.output2 == "true":
-        counter += 1
-    
-    if test.output3 == "true":
-        counter += 1
-    
-    print(counter, "/3 tests passed\n")
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 
