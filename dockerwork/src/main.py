@@ -1,4 +1,5 @@
 import test
+import time
 
 if test.one == True:
     counter = 0
