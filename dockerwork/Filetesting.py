@@ -12,7 +12,7 @@ from datetime import datetime
 image = "Dockerfile"
 
 def run_DOCKER():
-    print("well i guess this is a start")
+    print("running docker")
     subprocess.run("docker build --tag dockerbuild-python-docker .",shell=True)
 
    
