@@ -49,7 +49,7 @@ def update_testcase(filename:str):
     line = reader.readlines()
         
         
-    with open("src/main.py",'w') as file:
+    with open("dockerwork/src/main.py",'w') as file:
         for string in line:
             file.write(string)
 
@@ -65,7 +65,7 @@ def update_usercode(filename:str):
     line = reader.readlines()
         
         
-    with open("src/test.py",'w') as file:
+    with open("dockerwork/src/test.py",'w') as file:
         for string in line:
             file.write(string)
 
