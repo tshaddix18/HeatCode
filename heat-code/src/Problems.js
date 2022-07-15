@@ -1,6 +1,8 @@
 // Problems.js
 // Currently the problems page
 import { Table, Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
+import problemInfo from "./problemInfo";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 const WelcomeCard = () => {
   return (
@@ -20,9 +22,21 @@ const WelcomeCard = () => {
 };
 
 const ProblemTable = () => {
+  console.log(problemInfo);
+  const problems = problemInfo.problemInfo.map((prob) => {
+    return (
+      <tr>
+        <th scope="row">{prob.Number}</th>
+        <td>{prob.Problem}</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+    );
+  });
   return (
     <div class="m-4">
       <Table>
+        {problems}
         <thead>
           <tr>
             <th>#</th>
