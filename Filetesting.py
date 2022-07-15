@@ -20,7 +20,7 @@ def run_DOCKER():
     output = subprocess.run("docker run --name=test2 dockerbuild-python-docker",shell=True,capture_output=True).stdout
     subprocess.run(" docker container wait test2",shell=True)
 
-    with open("src/output.txt",'wb') as file:
+    with open("dockerwork/src/output.txt",'wb') as file:
         
            file.write(output)
     ping = subprocess.run("docker container inspect test2",shell=True,capture_output=True,universal_newlines = True).stdout
@@ -32,10 +32,10 @@ def run_DOCKER():
         item2 = datetime.strptime(ping[integerend+25:integerend+40],"%H:%M:%S.%f")
         timechange = item2-item1
         
-    with open("src/doccontinfo.txt",'w') as file:
+    with open("dockerwork/src/doccontinfo.txt",'w') as file:
         
         file.write(ping)
-    with open("src/runtime.txt",'w') as file:
+    with open("dockerwork/src/runtime.txt",'w') as file:
         file.write(str(timechange.total_seconds()) + " seconds")
     
     latest = subprocess.run(" docker container ls -l",shell=True).stdout
