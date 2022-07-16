@@ -1,18 +1,18 @@
 
 from urllib.parse import uses_relative
-
+import usercode
 #import filetesting
 
 
 
 
-one,two,three,four,five,six = False, False, False, False, False, False
+one,two,three,four,five,six = True, False, False, False, False, False
 
-output1, output2, output3, output4, output5
+
 
 
 def userCode(x):
-   return 1
+   return 3
     
     
 
@@ -22,7 +22,6 @@ def problemOne():
     global output3
     global output4
     global output5
-
     output1 = userCode("abcabcbb")
     output2 = userCode("bbbbb")
     output3 = userCode("pwwkew")
