@@ -17,6 +17,7 @@ function Welcome() {
 
   return <h1>Hello, {Docker}</h1>;
 }
+
 const CodeCard = () => {
   return (
     <div>
@@ -30,9 +31,11 @@ const CodeCard = () => {
   );
 };
 export const CodePage = () => {
+
   const [data, setData] = useState({data: []});
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('');
+
   const handleClick =  async () => {
     setIsLoading(true);
 
@@ -73,8 +76,9 @@ export const CodePage = () => {
       />
 
       <div class="m-4">
-        <button class="btn btn-outline-dark btn-lg" onClick={Welcome()}>
+        <button class="btn btn-outline-dark btn-lg" onClick={handleClick}>
           {" "}
+
           Run code
         </button>
         

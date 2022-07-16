@@ -17,4 +17,4 @@ def getnewcurrenttime():
     Filetesting.run_DOCKER()
     #with open "dockerwork/src/" as file:
 
-    return {'docker time is DOCKERRERR'}
+    return str('docker time is DOCKERRERR')

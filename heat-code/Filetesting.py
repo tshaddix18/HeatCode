@@ -48,6 +48,6 @@ def update_usercode(filename:str):
     
     print("updating usercode")
 
-#run_DOCKER()
+run_DOCKER()
 #update_testcase("Dockerfile")
 #update_usercode("Dockerfile")
