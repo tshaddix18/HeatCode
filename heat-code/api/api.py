@@ -4,6 +4,6 @@ import time
 
 
 app = Flask(__name__)
-@app.route('/code')
-def get_currenttime():
+@app.route('/time')
+def getcurrenttime():
     return {'time':time.time()}
