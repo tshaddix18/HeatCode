@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, flash, request
+from flask import Flask, jsonify, render_template, url_for, flash, request
 from datetime import datetime, timedelta
 import time
 import sys
@@ -17,4 +17,4 @@ def getnewcurrenttime():
     Filetesting.run_DOCKER()
     #with open "dockerwork/src/" as file:
 
-    return str('docker time is DOCKERRERR')
+    return jsonify(str('docker time is DOCKERRERR'))

@@ -10,7 +10,7 @@ function Welcome() {
   const [Docker,runDocker] = useState([]);
   useEffect(() =>{
     fetch('/docker').then(res => res.json()).then(data => {
-      Docker(data);
+      runDocker(data);
     });
 
   },[]);
@@ -53,18 +53,19 @@ export const CodePage = () => {
 
       const result = await response.json();
 
-      console.log('result is: ', JSON.stringify(result, null, 4));
-
+      console.log('result is: ', JSON.stringify(result));
+      setErr(JSON.stringify(result));
       setData(result);
     } catch (err) {
       setErr(err.message);
     } finally {
       setIsLoading(false);
+      console.log(data);
     }
   };
     console.log("hey");
   
-
+    
   return (
     <>
       <CodeCard />
@@ -82,6 +83,9 @@ export const CodePage = () => {
           Run code
         </button>
         
+        <output>
+          {data}
+        </output>
       </div>
     </>
   );
