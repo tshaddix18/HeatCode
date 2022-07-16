@@ -6,6 +6,7 @@ import { python } from "@codemirror/lang-python";
 const MOCK_PROBLEM = {
   Number: "1",
   Difficulty: "Easy",
+  Name: "Longest Substring",
   Problem:
     "Given a string s, find the length of the longest substring without repeating characters.",
   "Example 1":
@@ -39,6 +40,7 @@ const MOCK_PROBLEM = {
     Output: "6",
   },
 };
+
 // https://uiwjs.github.io/react-codemirror/
 // https://stackoverflow.com/questions/57024486/react-get-codemirror-value-onclick
 const CodeCard = () => {

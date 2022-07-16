@@ -1,6 +1,7 @@
 // Problems.js
 // Currently the problems page
 import { Table, Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
+import { CodePage } from "./CodePage";
 import problemInfo from "./problemInfo";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -24,11 +25,10 @@ const WelcomeCard = () => {
 const peppers = {
   Easy: "🌶",
   Medium: "🌶🌶",
-  Hard: "🌶🌶🌶",
+  Hard: "🌶🌶🌶🔥",
 };
 
 const ProblemTable = () => {
-  console.log(problemInfo);
   const problems = problemInfo.problemInfo.map((prob) => {
     return (
       <tr>
@@ -37,10 +37,12 @@ const ProblemTable = () => {
           <Link
             to={{
               pathname: `/code/${prob.Number}`,
-              id: prob.Number,
+              props: "myprop"
             }}
+            id={prob.Number}
+            props={prob}
           >
-            {prob.Problem}
+            {prob.Name}
           </Link>
         </td>
         <td>{peppers[prob.Difficulty]}</td>

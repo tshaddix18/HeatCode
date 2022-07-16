@@ -55,6 +55,7 @@ export default function App() {
       <Routes>
         <Route path="/code" element={<CodePage />} />
         <Route path="/" element={<Problems />} />
+        <Route path="/code/:problemId" element={<CodePage />} />
         <Route
           path="/login"
           element={

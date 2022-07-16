@@ -3,6 +3,7 @@ export default {
     {
       Number: "1",
       Difficulty: "Easy",
+      Name: "Longest Substring",
       Problem:
         "Given a string s, find the length of the longest substring without repeating characters.",
       "Example 1":
@@ -40,6 +41,7 @@ export default {
     {
       Number: "2",
       Difficulty: "Easy",
+      Name: "Missing Number",
       Problem:
         "Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.",
       "Example 1":
@@ -64,7 +66,7 @@ export default {
       },
 
       "Test Case 4": {
-        Input: "[1,4,5,6,2,3",
+        Input: "[1,4,5,6,2,3]",
         Output: "0",
       },
 
@@ -77,6 +79,7 @@ export default {
     {
       Number: "3",
       Difficulty: "Medium",
+      Name: "Most Frequent Strings",
       Problem:
         "Given an array of strings words and an integer k, return the k most frequent strings. \n Return the answer sorted by the frequency from highest to lowest. Sort the words with the same frequency by their lexicographical order.",
       "Example 1":
@@ -113,6 +116,7 @@ export default {
     {
       Number: "4",
       Difficulty: "Medium",
+      Name: "Subsets",
       Problem:
         "Given an integer array nums of unique elements, return all possible subsets (the power set). \n The solution set must not contain duplicate subsets. Return the solution in any order.",
       "Example 1":
@@ -137,6 +141,7 @@ export default {
     {
       Number: "5",
       Difficulty: "Hard",
+      Name: "Regular Expression",
       Problem:
         "Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where: \n \n '.' Matches any single character.​​​​ \n '*' Matches zero or more of the preceding element. \nThe matching should cover the entire input string (not partial).",
       "Example 1": 'Input: s = "aa", p = "a" \n Output: false',
@@ -161,6 +166,7 @@ export default {
     {
       Number: "6",
       Difficulty: "Hard",
+      Name: "Parentheses Substring",
       Problem:
         "Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.",
       "Example 1": 'Input: s = "(()" \n Output: 2',
@@ -173,6 +179,11 @@ export default {
       "Test Case 2": {
         Input: 's = ")()())"',
         Output: "4",
+      },
+
+      "Test Case 3": {
+        Input: 's = ")()()())"',
+        Output: "6",
       },
     },
   ],
