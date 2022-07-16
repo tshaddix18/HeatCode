@@ -37,9 +37,10 @@ const ProblemTable = () => {
           <Link
             to={{
               pathname: `/code/${prob.Number}`,
-              props: "myprop"
+              state: "myprop"
             }}
             id={prob.Number}
+            state={{from: "hihiihi:w "}}
             props={prob}
           >
             {prob.Name}

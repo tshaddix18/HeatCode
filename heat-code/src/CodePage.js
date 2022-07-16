@@ -1,8 +1,12 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { Table, Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
+
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
 import CodeMirror from "@uiw/react-codemirror";
 import { python } from "@codemirror/lang-python";
+
+import problemInfo from "./problemInfo";
 const MOCK_PROBLEM = {
   Number: "1",
   Difficulty: "Easy",
@@ -43,20 +47,26 @@ const MOCK_PROBLEM = {
 
 // https://uiwjs.github.io/react-codemirror/
 // https://stackoverflow.com/questions/57024486/react-get-codemirror-value-onclick
-const CodeCard = () => {
+const CodeCard = (props) => {
+  const { problem } = props;
+  debugger;
   return (
     <div>
       <Card outline body>
         <CardBody>
-          <CardTitle tag="h4">Problem 435: Code input</CardTitle>
-          <CardText>Problem text here</CardText>
+          <CardTitle tag="h4">Problem {problem.Number}: {problem.Name}</CardTitle>
+          <CardText>{problem.Problem}</CardText>
         </CardBody>
       </Card>
     </div>
   );
 };
 export const CodePage = (props) => {
-  console.log(props);
+  const location = useLocation();
+  const problemLoc = location.pathname.slice(-1);
+  // Select problem from ID (-1 bc zero index)
+  const problemId = parseInt(problemLoc) - 1;
+  const problem = problemInfo.problemInfo[problemId];
 
   const handleClick = () => {
     {
@@ -68,9 +78,9 @@ export const CodePage = (props) => {
   };
   return (
     <>
-      <CodeCard />
+      <CodeCard problem={problem} />
       <CodeMirror
-        value="print('hello world!')"
+        value="# Your code here"
         height="300px"
         theme={okaidia}
         extensions={[python()]}
