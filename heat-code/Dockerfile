@@ -3,8 +3,8 @@ FROM python:3.8-slim-buster
 WORKDIR /src
 
 
-COPY src/main.py ./
-COPY src/test.py ./
+COPY dockerwork/src/main.py ./
+COPY dockerwork/src/test.py ./
 
 
 

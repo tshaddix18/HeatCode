@@ -9,7 +9,7 @@ def run_DOCKER():
     subprocess.run("docker build --tag dockerbuild-python-docker .",shell=True)
     output = subprocess.run("docker run dockerbuild-python-docker ",shell=True,capture_output=True).stdout
     
-    with open("src/output.txt",'wb') as file:
+    with open("dockerwork/src/output.txt",'wb') as file:
         
             file.write(output)
     #output = subprocess.run("pwd", capture_output=True).stdout
@@ -25,7 +25,7 @@ def update_testcase(filename:str):
     line = reader.readlines()
         
         
-    with open("src/main.py",'w') as file:
+    with open("dockerwork/src/main.py",'w') as file:
         for string in line:
             file.write(string)
 

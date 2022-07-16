@@ -1,10 +1,22 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Table, Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
 import CodeMirror from "@uiw/react-codemirror";
 import { python } from "@codemirror/lang-python";
 // https://uiwjs.github.io/react-codemirror/
 // https://stackoverflow.com/questions/57024486/react-get-codemirror-value-onclick
+
+function Welcome() {
+  const [Docker,runDocker] = useState([]);
+  useEffect(() =>{
+    fetch('/docker').then(res => res.json()).then(data => {
+      Docker(data);
+    });
+
+  },[]);
+
+  return <h1>Hello, {Docker}</h1>;
+}
 const CodeCard = () => {
   return (
     <div>
@@ -18,12 +30,38 @@ const CodeCard = () => {
   );
 };
 export const CodePage = () => {
-  const handleClick = () => {
-    {
-      /* TODO: set onClick to connect with flask and run the docker tests somehow */
+  const [data, setData] = useState({data: []});
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState('');
+  const handleClick =  async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/docker', {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      console.log('result is: ', JSON.stringify(result, null, 4));
+
+      setData(result);
+    } catch (err) {
+      setErr(err.message);
+    } finally {
+      setIsLoading(false);
     }
-    console.log("hey");
   };
+    console.log("hey");
+  
+
   return (
     <>
       <CodeCard />
@@ -35,7 +73,7 @@ export const CodePage = () => {
       />
 
       <div class="m-4">
-        <button class="btn btn-outline-dark btn-lg" onClick={handleClick}>
+        <button class="btn btn-outline-dark btn-lg" onClick={Welcome()}>
           {" "}
           Run code
         </button>

@@ -68,7 +68,7 @@ export default function App() {
           element={
             <div>
               <h1>Login</h1>{" "}
-              <p> The current time is {currentTime}</p>
+              <p> The docker current time is {currentTime}</p>
             </div>
           }
         />
