@@ -1,6 +1,10 @@
 // Problems.js
 // Currently the problems page
 import { Table, Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
+import { CodePage } from "./CodePage";
+import problemInfo from "./problemInfo";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 const WelcomeCard = () => {
   return (
@@ -18,8 +22,34 @@ const WelcomeCard = () => {
     </div>
   );
 };
+const peppers = {
+  Easy: "🌶",
+  Medium: "🌶🌶",
+  Hard: "🌶🌶🌶🔥",
+};
 
 const ProblemTable = () => {
+  const problems = problemInfo.problemInfo.map((prob) => {
+    return (
+      <tr>
+        <th scope="row">{prob.Number}</th>
+        <td>
+          <Link
+            to={{
+              pathname: `/code/${prob.Number}`,
+              state: "myprop"
+            }}
+            id={prob.Number}
+            state={{from: "hihiihi:w "}}
+            props={prob}
+          >
+            {prob.Name}
+          </Link>
+        </td>
+        <td>{peppers[prob.Difficulty]}</td>
+      </tr>
+    );
+  });
   return (
     <div class="m-4">
       <Table>
@@ -28,29 +58,9 @@ const ProblemTable = () => {
             <th>#</th>
             <th>Problem</th>
             <th>Difficulty</th>
-            <th>Tags</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Palindrome number</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
+        <tbody>{problems}</tbody>
       </Table>
     </div>
   );

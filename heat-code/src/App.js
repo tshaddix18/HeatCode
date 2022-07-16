@@ -22,7 +22,7 @@ export const Navigation = () => {
         <Collapse navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink tag={RRNavLink} to="/code">
+              <NavLink tag={RRNavLink} to="/code/1">
                 Code
               </NavLink>
             </NavItem>
@@ -53,8 +53,8 @@ export default function App() {
       {/* A <Routes> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
       <Routes>
-        <Route path="/code" element={<CodePage />} />
         <Route path="/" element={<Problems />} />
+        <Route path="/code/:problemId" element={<CodePage />} />
         <Route
           path="/login"
           element={
