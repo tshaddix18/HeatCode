@@ -1,6 +1,6 @@
 import { Problems } from "./Problems";
 import { CodePage } from "./CodePage";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -46,6 +46,14 @@ export const Navigation = () => {
 // https://github.com/reactstrap/reactstrap/issues/1285
 export default function App() {
   document.title = "HeatCode"
+  const [currentTime,getcurrenttime] = useState([]);
+  useEffect(() =>{
+    fetch('/time').then(res => res.json()).then(data => {
+      getcurrenttime(data.time);
+    });
+
+  },[]);
+
   return (
     <Router>
       <Navigation />
@@ -60,6 +68,7 @@ export default function App() {
           element={
             <div>
               <h1>Login</h1>{" "}
+              <p> The docker current time is {currentTime}</p>
             </div>
           }
         />

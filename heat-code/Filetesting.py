@@ -21,7 +21,6 @@ def run_DOCKER():
     subprocess.run(" docker container wait test2",shell=True)
 
     with open("dockerwork/src/output.txt",'wb') as file:
-        
            file.write(output)
     ping = subprocess.run("docker container inspect test2",shell=True,capture_output=True,universal_newlines = True).stdout
   
