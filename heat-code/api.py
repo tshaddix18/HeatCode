@@ -23,3 +23,13 @@ def getnewcurrenttime():
     print(jsonify(str(data)))
     print(type(jsonify(str(data))))
     return jsonify(str(data))
+
+@app.route("/senduserdata", methods=["POST"], strict_slashes=False)
+def add_articles():
+    data = request.get_json()
+    with open("dockerwork/src/usercode.txt","w") as file:
+        file.write(data["userCode"])
+        print("the data is "+ str(data["userCode"]))
+        
+
+    return "success"

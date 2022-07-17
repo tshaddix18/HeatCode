@@ -13,7 +13,7 @@ import problemInfo from "./problemInfo";
 // https://uiwjs.github.io/react-codemirror/
 // https://stackoverflow.com/questions/57024486/react-get-codemirror-value-onclick
 function Welcome() {
-  const [Docker,runDocker] = useState([]);
+  const [Docker,runDocker] = useState(["0/5 tests passed"]);
   useEffect(() =>{
     fetch('/docker').then(res => res.json()).then(data => {
       Docker(data);
@@ -34,10 +34,11 @@ const CodeCard = (props) => {
         <CardTitle key={exNum} tag="h5">
           {exNum}
         </CardTitle>
-        <p class="text-monospace">{problem[exNum]}</p>
+        <CardText>{problem[exNum]}</CardText>
       </>
     );
   });
+  debugger;
   return (
     <div>
       <Card outline body>
@@ -57,16 +58,29 @@ export const CodePage = (props) => {
   const [userCode, setUserCode] = useState(DEFAULT_TEXT);
   const [runCode, setRunCode] = useState(false);
   const [output, setOutput] = useState("Output");
-  const [data, setData] = useState({data: []});
+  const [data, setData] = useState("0/5 tests passed");
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('')
   const location = useLocation();
+
   const problemLoc = location.pathname.slice(-1);
   // Select problem from ID (-1 bc zero index)
   const problemId = parseInt(problemLoc) - 1;
   const problem = problemInfo.problemInfo[problemId];
 
   const handleClick = async() => {
+
+  const todo = {userCode};
+const response = await fetch("/senduserdata", {
+method: "POST",
+headers: {
+'Content-Type' : 'application/json'
+},
+body: JSON.stringify(todo)
+})
+if (response.ok){
+console.log("it worked")
+}
    
     setIsLoading(true);
 
@@ -115,8 +129,8 @@ export const CodePage = (props) => {
         </button>
       
        <output>
-         
-                     {data}
+         here!
+          {data}
         </output>
       </div>
     </>

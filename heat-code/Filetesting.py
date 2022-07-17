@@ -27,8 +27,8 @@ def run_DOCKER():
     if ping.index("StartedAt"):
         integern =  ping.index("StartedAt")
         integerend =  ping.index("FinishedAt")
-        item1 = datetime.strptime(ping[integern+24:integern+39],"%H:%M:%S.%f")
-        item2 = datetime.strptime(ping[integerend+25:integerend+40],"%H:%M:%S.%f")
+        item1 = datetime.strptime(ping[integern+24:integern+37],"%H:%M:%S.%f")
+        item2 = datetime.strptime(ping[integerend+25:integerend+38],"%H:%M:%S.%f")
         timechange = item2-item1
         
     with open("dockerwork/src/doccontinfo.txt",'w') as file:
