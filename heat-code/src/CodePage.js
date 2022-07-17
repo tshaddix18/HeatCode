@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 
-import React from "react";
+
 import { useLocation } from "react-router-dom";
 import { Table, Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 
@@ -52,7 +52,7 @@ export const CodePage = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('');
 
-  const handleClick =  async () => {
+  const handleClick = async(props) => {
     setIsLoading(true);
 
     try {
@@ -78,7 +78,7 @@ export const CodePage = (props) => {
       setIsLoading(false);
       console.log(data);
     }
-
+  }
     console.log("hey");
   
     
@@ -94,11 +94,7 @@ export const CodePage = (props) => {
 
       <div class="m-4">
         <button class="btn btn-outline-dark btn-lg" onClick={handleClick}>
-          {fs.writeFile('Otpt.txt', data, (err) => {
-      
-      // In case of a error throw err.
-      if (err) throw err;
-  })}
+   
 
           Run code
         </button>
