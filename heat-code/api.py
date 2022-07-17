@@ -15,6 +15,8 @@ def getcurrenttime():
 @app.route('/docker')
 def getnewcurrenttime():
     Filetesting.run_DOCKER()
-    #with open "dockerwork/src/" as file:
 
-    return jsonify(str('docker time is DOCKERRERR'))
+    with open("dockerwork/src/output.txt") as filt:
+        newstring = filt.read()
+
+    return jsonify(newstring)

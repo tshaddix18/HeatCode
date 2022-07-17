@@ -42,17 +42,22 @@ const CodeCard = (props) => {
     </div>
   );
 };
+const DEFAULT_TEXT = "# Your code here";
 export const CodePage = (props) => {
+  const [userCode, setUserCode] = useState(DEFAULT_TEXT);
+  const [runCode, setRunCode] = useState(false);
+  const [output, setOutput] = useState("Output");
+  const [data, setData] = useState({data: []});
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState('')
   const location = useLocation();
   const problemLoc = location.pathname.slice(-1);
   // Select problem from ID (-1 bc zero index)
   const problemId = parseInt(problemLoc) - 1;
   const problem = problemInfo.problemInfo[problemId];
-  const [data, setData] = useState({data: []});
-  const [isLoading, setIsLoading] = useState(false);
-  const [err, setErr] = useState('');
 
-  const handleClick = async(props) => {
+  const handleClick = async() => {
+    setRunCode(true);
     setIsLoading(true);
 
     try {
@@ -78,30 +83,31 @@ export const CodePage = (props) => {
       setIsLoading(false);
       console.log(data);
     }
-  }
-    console.log("hey");
-  
-    
+    // TODO: PUT FLASK SENDING CODE HERE
+    console.log(userCode);
+  };
   return (
     <>
       <CodeCard problem={problem} />
       <CodeMirror
-        value="# Your code here"
+        value={DEFAULT_TEXT}
         height="300px"
         theme={okaidia}
         extensions={[python()]}
+        onChange={(editor) => {
+          setUserCode(editor);
+        }}
       />
 
       <div class="m-4">
         <button class="btn btn-outline-dark btn-lg" onClick={handleClick}>
-   
-
           Run code
         </button>
-        
-        <output>
-          {data}
-        </output>
+        {runCode && (
+          <>
+            <h3> Output</h3> <p class="text-monospace">{data}</p>
+          </>
+        )}
       </div>
     </>
   );
