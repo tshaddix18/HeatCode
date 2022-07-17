@@ -13,7 +13,7 @@ import problemInfo from "./problemInfo";
 // https://uiwjs.github.io/react-codemirror/
 // https://stackoverflow.com/questions/57024486/react-get-codemirror-value-onclick
 function Welcome() {
-  const [Docker,runDocker] = useState([]);
+  const [Docker,runDocker] = useState(["0/5 tests passed"]);
   useEffect(() =>{
     fetch('/docker').then(res => res.json()).then(data => {
       Docker(data);
@@ -34,10 +34,11 @@ const CodeCard = (props) => {
         <CardTitle key={exNum} tag="h5">
           {exNum}
         </CardTitle>
-        <p class="text-monospace">{problem[exNum]}</p>
+        <CardText>{problem[exNum]}</CardText>
       </>
     );
   });
+  debugger;
   return (
     <div>
       <Card outline body>
@@ -54,10 +55,11 @@ const CodeCard = (props) => {
 };
 const DEFAULT_TEXT = "# Your code here";
 export const CodePage = (props) => {
+
   const [userCode, setUserCode] = useState(DEFAULT_TEXT);
   const [runCode, setRunCode] = useState(false);
   const [output, setOutput] = useState("Output");
-  const [data, setData] = useState({data: []});
+  const [data, setData] = useState("0/5 tests passed");
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('')
   const location = useLocation();
@@ -115,8 +117,8 @@ export const CodePage = (props) => {
         </button>
       
        <output>
-         
-                     {data}
+         here!
+          {data}
         </output>
       </div>
     </>
