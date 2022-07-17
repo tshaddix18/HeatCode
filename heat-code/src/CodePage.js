@@ -55,7 +55,6 @@ const CodeCard = (props) => {
 };
 const DEFAULT_TEXT = "# Your code here";
 export const CodePage = (props) => {
-
   const [userCode, setUserCode] = useState(DEFAULT_TEXT);
   const [runCode, setRunCode] = useState(false);
   const [output, setOutput] = useState("Output");
@@ -63,12 +62,25 @@ export const CodePage = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('')
   const location = useLocation();
+
   const problemLoc = location.pathname.slice(-1);
   // Select problem from ID (-1 bc zero index)
   const problemId = parseInt(problemLoc) - 1;
   const problem = problemInfo.problemInfo[problemId];
 
   const handleClick = async() => {
+
+  const todo = {userCode};
+const response = await fetch("/senduserdata", {
+method: "POST",
+headers: {
+'Content-Type' : 'application/json'
+},
+body: JSON.stringify(todo)
+})
+if (response.ok){
+console.log("it worked")
+}
    
     setIsLoading(true);
 
