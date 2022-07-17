@@ -12,7 +12,7 @@ one,two,three,four,five,six = True, False, False, False, False, False
 
 
 def userCode(x):
-   return 3
+   return 1
     
     
 

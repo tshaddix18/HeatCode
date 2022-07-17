@@ -116,8 +116,8 @@ export const CodePage = (props) => {
         </button>
       
        <output>
-         here!
-          {data}
+         
+                     {data}
         </output>
       </div>
     </>
