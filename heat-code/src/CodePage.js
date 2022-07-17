@@ -12,6 +12,17 @@ import problemInfo from "./problemInfo";
 
 // https://uiwjs.github.io/react-codemirror/
 // https://stackoverflow.com/questions/57024486/react-get-codemirror-value-onclick
+function Welcome() {
+  const [Docker,runDocker] = useState([]);
+  useEffect(() =>{
+    fetch('/docker').then(res => res.json()).then(data => {
+      Docker(data);
+    });
+
+  },[]);
+
+  return <h1>Hello, {Docker}</h1>;
+}
 const CodeCard = (props) => {
   const { problem } = props;
   const exampleNames = Object.keys(problem).filter((key) =>
@@ -57,7 +68,7 @@ export const CodePage = (props) => {
   const problem = problemInfo.problemInfo[problemId];
 
   const handleClick = async() => {
-    setRunCode(true);
+   
     setIsLoading(true);
 
     try {
@@ -74,7 +85,7 @@ export const CodePage = (props) => {
 
       const result = await response.json();
 
-      console.log('result is: ', JSON.stringify(result));
+      
       setErr(JSON.stringify(result));
       setData(result);
     } catch (err) {
@@ -103,11 +114,11 @@ export const CodePage = (props) => {
         <button class="btn btn-outline-dark btn-lg" onClick={handleClick}>
           Run code
         </button>
-        {runCode && (
-          <>
-            <h3> Output</h3> <p class="text-monospace">{data}</p>
-          </>
-        )}
+      
+       <output>
+         here!
+          {data}
+        </output>
       </div>
     </>
   );
