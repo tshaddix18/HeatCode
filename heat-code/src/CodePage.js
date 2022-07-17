@@ -34,11 +34,10 @@ const CodeCard = (props) => {
         <CardTitle key={exNum} tag="h5">
           {exNum}
         </CardTitle>
-        <CardText>{problem[exNum]}</CardText>
+        <p class="text-monospace">{problem[exNum]}</p>
       </>
     );
   });
-  debugger;
   return (
     <div>
       <Card outline body>
