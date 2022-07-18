@@ -1,12 +1,12 @@
 // Problems.js
-// Currently the problems page
-import { Table, Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
-import { CodePage } from "./CodePage";
+// Main page and problems page, displaying the table of problems
+import { Table, Card, CardBody, CardTitle, CardText, } from "reactstrap";
 import problemInfo from "./problemInfo";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 const WelcomeCard = () => {
+  // Render welcome text about the website
   return (
     <div class="m-4">
       <Card outline body>
@@ -29,6 +29,7 @@ const peppers = {
 };
 
 const ProblemTable = () => {
+  // Render table displaying all the problems from problemInfo.json
   const problems = problemInfo.problemInfo.map((prob) => {
     return (
       <tr>
@@ -67,6 +68,7 @@ const ProblemTable = () => {
 };
 
 export function Problems() {
+  // Render problems page
   return (
     <div className="Problems">
       <WelcomeCard />

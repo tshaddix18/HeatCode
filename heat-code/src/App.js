@@ -1,6 +1,8 @@
+// App.js
+// Contains all routing and navigation bar for all pages
 import { Problems } from "./Problems";
 import { CodePage } from "./CodePage";
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -10,10 +12,11 @@ import {
   Nav,
   Collapse,
 } from "reactstrap";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link as RRNavLink } from "react-router-dom";
 
 export const Navigation = () => {
+  // Top navigation bar, displaying links to other pages
   return (
     <div>
       <Navbar color="light" expand="md" light>
@@ -45,15 +48,17 @@ export const Navigation = () => {
 // Credit for reactstrap/navlink code
 // https://github.com/reactstrap/reactstrap/issues/1285
 export default function App() {
-  document.title = "HeatCode"
-  const [currentTime,getcurrenttime] = useState([]);
-  useEffect(() =>{
-    fetch('/time').then(res => res.json()).then(data => {
-      getcurrenttime(data.time);
-    });
+  document.title = "HeatCode";
+  const [currentTime, getcurrenttime] = useState([]);
+  useEffect(() => {
+    fetch("/time")
+      .then((res) => res.json())
+      .then((data) => {
+        getcurrenttime(data.time);
+      });
+  }, []);
 
-  },[]);
-
+  // Router code: enables functionality of links to /code/ and other pages
   return (
     <Router>
       <Navigation />
@@ -67,8 +72,7 @@ export default function App() {
           path="/login"
           element={
             <div>
-              <h1>Login</h1>{" "}
-              <p> The docker current time is {currentTime}</p>
+              <h1>Login</h1> <p> The docker current time is {currentTime}</p>
             </div>
           }
         />
