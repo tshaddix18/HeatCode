@@ -16,6 +16,8 @@ Created by:
 
   - Navigate to the repo: `cd HeatCode`
 
+  - Install required dependencies: `npm`, `python`, `pip`, Docker
+
 ### 2. Run the front end
 
   - Navigate to `heat-code` which contains the site code: `cd heat-code`
@@ -25,6 +27,8 @@ Created by:
   - (NOTE: You may need to run `npm install` if you are missing packages)
 
 ### 3. Run the back end
+
+  - Install more required dependencies: `pip install python-dotenv`
 
   - In another terminal window or tab, run `npm run-script start-api`
 
