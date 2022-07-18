@@ -1,6 +1,7 @@
-# CompLC
-Competitive Leetcoding is a group project about making a more competitive framework for practicing for interviews
-members:
+# HeatCode
+HeatCode is a site aimed about making a more competitive framework for practicing for interviews. 
+
+Created by:
 - Thomas
 - Isha
 - Olivia
@@ -8,10 +9,36 @@ members:
 
 [Mockups](https://oliviawong314942.invisionapp.com/freehand/HeatCode-JLGHw0Ciq?dsid_h=39b7368f5671a78357590a4db28bacd025cf0ac5b9b7484a7b8c9695fc0ad4ec&uid_h=3ebc275bd3372d8c081fed868194791526e274135924821e7731efa95f5000c0)
 
+## Installation guide
+### 1. Clone the repo
 
-## Available Scripts
+  - In your terminal window, run: `git clone https://github.com/tshaddix18/HeatCode`
+
+  - Navigate to the repo: `cd HeatCode`
+
+### 2. Run the front end
+
+  - Navigate to `heat-code` which contains the site code: `cd heat-code`
+
+  - Start node: `npm start`
+
+  - (NOTE: You may need to run `npm install` if you are missing packages)
+
+### 3. Run the back end
+
+  - In another terminal window or tab, run `npm run-script start-api`
+
+  - This will run the flask server and enable backend functionality
+
+### 4. Open browser
+
+  - After the servers are running, you should be able to view the site in `localhost:3000` if running locally! 
+
+  - If you're having trouble running it, feel free to reach out or open an issue :)
+
+## Available Scripts and more information
 All the website code lives in `heat-code`. 
-In the project directory, you can run:
+In the repo directory, you can run:
 
 ### `cd heat-code`
 ### `npm start`
