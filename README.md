@@ -1,15 +1,13 @@
 # HeatCode
-HeatCode is a site aimed about making a more competitive framework for practicing for interviews. 
+HeatCode is a site aimed about making a more competitive framework for practicing for interviews. Created by Thomas, Isha, Olivia, and Alexander.
 
-Created by:
-- Thomas
-- Isha
-- Olivia
-- Alexander
+#### Preview:
+<img width="1072" alt="Screen Shot 2022-07-18 at 1 16 57 PM" src="https://user-images.githubusercontent.com/11857485/179609709-ffffb36b-1db2-42cd-bcd6-9be4f3dd9850.png">
+
 
 [Mockups](https://oliviawong314942.invisionapp.com/freehand/HeatCode-JLGHw0Ciq?dsid_h=39b7368f5671a78357590a4db28bacd025cf0ac5b9b7484a7b8c9695fc0ad4ec&uid_h=3ebc275bd3372d8c081fed868194791526e274135924821e7731efa95f5000c0)
 
-## Installation guide
+# Installation guide
 ### 1. Clone the repo
 
   - In your terminal window, run: `git clone https://github.com/tshaddix18/HeatCode`
