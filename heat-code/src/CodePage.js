@@ -70,6 +70,18 @@ export const CodePage = (props) => {
 
   const handleClick = async() => {
 
+    const todo2 = {problemId};
+    const responses = await fetch("/problem", {
+    method: "POST",
+    headers: {
+    'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify(todo2)
+    })
+    if (responses.ok){
+    console.log("it worked")
+    }
+
   const todo = {userCode};
 const response = await fetch("/senduserdata", {
 method: "POST",
