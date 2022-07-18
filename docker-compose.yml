@@ -3,7 +3,7 @@ services:
   frontend:
     image: node:lts
     volumes:
-      - myapp://compLC/CompLC/dockerwork/src
+      - myapp://compLC/CompLC/heat-code/dockerwork/src
 volumes:
   myapp:
     external: true
