@@ -1,8 +1,10 @@
-import React,{useState,useEffect} from "react";
-
+// Code page
+// /code/problemId
+// Page where user inputs code and works on a specific problem
+import React, { useState, useEffect } from "react";
 
 import { useLocation } from "react-router-dom";
-import { Table, Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
+import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
 import CodeMirror from "@uiw/react-codemirror";
@@ -10,20 +12,21 @@ import { python } from "@codemirror/lang-python";
 
 import problemInfo from "./problemInfo";
 
-// https://uiwjs.github.io/react-codemirror/
-// https://stackoverflow.com/questions/57024486/react-get-codemirror-value-onclick
+// Logic for running user-submitted code through docker
 function Welcome() {
-  const [Docker,runDocker] = useState(["0/5 tests passed"]);
-  useEffect(() =>{
-    fetch('/docker').then(res => res.json()).then(data => {
-      Docker(data);
-    });
-
-  },[]);
+  const [Docker, runDocker] = useState(["0/5 tests passed"]);
+  useEffect(() => {
+    fetch("/docker")
+      .then((res) => res.json())
+      .then((data) => {
+        Docker(data);
+      });
+  }, []);
 
   return <h1>Hello, {Docker}</h1>;
 }
 const CodeCard = (props) => {
+  // CodeCard: Shows info (examples, description) about a given problem
   const { problem } = props;
   const exampleNames = Object.keys(problem).filter((key) =>
     key.includes("Example")
@@ -38,7 +41,6 @@ const CodeCard = (props) => {
       </>
     );
   });
-  debugger;
   return (
     <div>
       <Card outline body>
@@ -53,14 +55,21 @@ const CodeCard = (props) => {
     </div>
   );
 };
+// Default code when no user-inputted code
 const DEFAULT_TEXT = "# Your code here";
+
 export const CodePage = (props) => {
+  // Render code page 
+  // States
+  // userCode: contains user code from CodeMirror
   const [userCode, setUserCode] = useState(DEFAULT_TEXT);
-  const [runCode, setRunCode] = useState(false);
   const [output, setOutput] = useState("Output");
+  // Output from Docker
   const [data, setData] = useState("0/5 tests passed");
   const [isLoading, setIsLoading] = useState(false);
-  const [err, setErr] = useState('')
+  const [err, setErr] = useState("");
+
+  // Get problemId and info from url 
   const location = useLocation();
 
   const problemLoc = location.pathname.slice(-1);
@@ -68,39 +77,39 @@ export const CodePage = (props) => {
   const problemId = parseInt(problemLoc) - 1;
   const problem = problemInfo.problemInfo[problemId];
 
-  const handleClick = async() => {
-
-    const todo2 = {problemId};
+  const handleClick = async () => {
+    // Handle problem submission click
+    const todo2 = { problemId };
     const responses = await fetch("/problem", {
-    method: "POST",
-    headers: {
-    'Content-Type' : 'application/json'
-    },
-    body: JSON.stringify(todo2)
-    })
-    if (responses.ok){
-    console.log("it worked")
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo2),
+    });
+    if (responses.ok) {
+      console.log("it worked");
     }
 
-  const todo = {userCode};
-const response = await fetch("/senduserdata", {
-method: "POST",
-headers: {
-'Content-Type' : 'application/json'
-},
-body: JSON.stringify(todo)
-})
-if (response.ok){
-console.log("it worked")
-}
-   
+    const todo = { userCode };
+    const response = await fetch("/senduserdata", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo),
+    });
+    if (response.ok) {
+      console.log("it worked");
+    }
+
     setIsLoading(true);
 
     try {
-      const response = await fetch('/docker', {
-        method: 'GET',
+      const response = await fetch("/docker", {
+        method: "GET",
         headers: {
-          Accept: 'application/json',
+          Accept: "application/json",
         },
       });
 
@@ -110,7 +119,6 @@ console.log("it worked")
 
       const result = await response.json();
 
-      
       setErr(JSON.stringify(result));
       setData(result);
     } catch (err) {
@@ -122,6 +130,7 @@ console.log("it worked")
     // TODO: PUT FLASK SENDING CODE HERE
     console.log(userCode);
   };
+  // Render all code page components
   return (
     <>
       <CodeCard problem={problem} />
@@ -139,9 +148,9 @@ console.log("it worked")
         <button class="btn btn-outline-dark btn-lg" onClick={handleClick}>
           Run code
         </button>
-      
-       <output>
-         here!
+
+        <output>
+          here!
           {data}
         </output>
       </div>
