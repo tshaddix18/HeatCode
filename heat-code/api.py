@@ -45,3 +45,20 @@ def add_problem():
         
 
     return "success"
+
+@app.route("/savetime", methods=["POST"], strict_slashes=False)
+def save_time():
+    data = time.time()
+    with open("dockerwork/src/time.txt","w") as file:
+        file.write(data["time"])
+
+    return "success"
+
+@app.route("/printtime")
+def print_time():
+    text_file = open("dockerwork/src/time.txt", "r")
+    data = text_file.read()
+    text_file.close()
+    new_time = (time.time() - data).totalminutes()
+    
+    return jsonify(str(new_time))
