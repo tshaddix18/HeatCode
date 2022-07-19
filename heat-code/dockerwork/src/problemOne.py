@@ -1,6 +1,6 @@
 import sys
-#import os
-#os.rename("userCode.txt", "userCode.py")
+import os
+os.rename("userCode.txt", "userCode.py")
 from inspect import getmembers, isfunction
 from urllib.parse import uses_relative
 from userCode import *
@@ -49,4 +49,4 @@ def problemOne():
 problemOne()
 
 
-#os.rename("userCode.py", "userCode.txt")
+os.rename("userCode.py", "userCode.txt")

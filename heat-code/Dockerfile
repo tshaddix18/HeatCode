@@ -10,7 +10,7 @@ COPY dockerwork/src/problemFour.py ./
 COPY dockerwork/src/problemThree.py ./
 COPY dockerwork/src/problemTwo.py ./
 COPY dockerwork/src/problemOne.py ./
-COPY dockerwork/src/userCode.py ./
+COPY dockerwork/src/userCode.txt ./
 COPY dockerwork/src/ProblemId.txt ./
 
 
