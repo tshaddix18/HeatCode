@@ -27,7 +27,7 @@ def getnewcurrenttime():
 @app.route("/senduserdata", methods=["POST"], strict_slashes=False)
 def add_articles():
     data = request.get_json()
-    with open("dockerwork/src/usercode.txt","w") as file:
+    with open("dockerwork/src/userCode.txt","w") as file:
         file.write(data["userCode"])
         #print("the data is "+ str(data["userCode"]))
         
@@ -38,7 +38,7 @@ def add_problem():
     data = request.get_json()
     print(type(data))
     print(str(data))
-    with open("dockerwork/src/problemid.txt","w") as file:
+    with open("dockerwork/src/problemId.txt","w") as file:
         file.write(str(data["problemId"]))
         
        

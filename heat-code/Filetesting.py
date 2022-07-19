@@ -19,7 +19,7 @@ def run_DOCKER():
     
     output = subprocess.run("docker run --name=test2 dockerbuild-python-docker",shell=True,capture_output=True).stdout
     subprocess.run(" docker container wait test2",shell=True)
-
+    output= subprocess.run(" docker logs test2",shell=True,capture_output=True).stdout
     with open("dockerwork/src/output.txt",'wb') as file:
            file.write(output)
     ping = subprocess.run("docker container inspect test2",shell=True,capture_output=True,universal_newlines = True).stdout
