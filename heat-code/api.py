@@ -39,7 +39,7 @@ def add_problem():
     print(type(data))
     print(str(data))
     with open("dockerwork/src/problemId.txt","w") as file:
-        file.write(str(data["problemId"]))
+        file.write(str(data["problemId"]+1))
         
        
         
