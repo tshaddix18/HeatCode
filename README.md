@@ -1,5 +1,5 @@
 # HeatCode
-HeatCode is a site aimed about making a more competitive framework for practicing for interviews. Created by Thomas, Isha, Olivia, and Alexander.
+HeatCode is a site aimed about making a more competitive framework for practicing for interviews. Created by Thomas, Isha, Olivia, and Alexander. Built using React and Flask. 
 
 #### Preview:
 <img width="1072" alt="Screen Shot 2022-07-18 at 1 16 57 PM" src="https://user-images.githubusercontent.com/11857485/179609709-ffffb36b-1db2-42cd-bcd6-9be4f3dd9850.png">
@@ -14,9 +14,19 @@ HeatCode is a site aimed about making a more competitive framework for practicin
 
   - Navigate to the repo: `cd HeatCode`
 
-  - Install required dependencies: `npm`, `python`, `pip`, Docker
+  - Install required dependencies: `npm`, `python`, `pip`, Docker Desktop
 
-### 2. Run the front end
+### 2. Run the back end
+
+  - Run Docker (open Docker Desktop)
+
+  - Install more required dependencies: `pip install python-dotenv`
+
+  - In another terminal window or tab, run `npm run-script start-api`
+
+  - This will run the flask server and enable backend functionality
+
+### 3. Run the front end
 
   - Navigate to `heat-code` which contains the site code: `cd heat-code`
 
@@ -24,13 +34,6 @@ HeatCode is a site aimed about making a more competitive framework for practicin
 
   - (NOTE: You may need to run `npm install` if you are missing packages)
 
-### 3. Run the back end
-
-  - Install more required dependencies: `pip install python-dotenv`
-
-  - In another terminal window or tab, run `npm run-script start-api`
-
-  - This will run the flask server and enable backend functionality
 
 ### 4. Open browser
 
