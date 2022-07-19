@@ -1,5 +1,5 @@
 # Your code here
 
 def usercodeee(s):
-    
+    print(s)
     return(0)

@@ -8,12 +8,12 @@ import Filetesting
 
 app = Flask(__name__)
 @app.route('/time')
-def getcurrenttime():
+def get_Current_Time():
     return {'time':time.time()}
 
 
 @app.route('/docker')
-def getnewcurrenttime():
+def run_Docker():
     Filetesting.run_DOCKER()
     #with open "dockerwork/src/" as file:
     text_file = open("dockerwork/src/output.txt", "r")
@@ -25,7 +25,7 @@ def getnewcurrenttime():
     return jsonify(str(data))
 
 @app.route("/senduserdata", methods=["POST"], strict_slashes=False)
-def add_articles():
+def add_Articles():
     data = request.get_json()
     with open("dockerwork/src/userCode.txt","w") as file:
         file.write(data["userCode"])
@@ -34,7 +34,7 @@ def add_articles():
 
     return "success"
 @app.route("/problem", methods=["POST"], strict_slashes=False)
-def add_problem():
+def add_Problem():
     data = request.get_json()
     print(type(data))
     print(str(data))

@@ -6,24 +6,22 @@ import json
 from subprocess import Popen, PIPE
 from datetime import datetime
 
-#from sqlalchemy import true
 
 
-image = "Dockerfile"
+
+
 
 def run_DOCKER():
     print("running docker")
     subprocess.run("docker build --tag dockerbuild-python-docker .",shell=True)
 
-   
-    
     output = subprocess.run("docker run --name=test2 dockerbuild-python-docker",shell=True,capture_output=True).stdout
     subprocess.run(" docker container wait test2",shell=True)
     output= subprocess.run(" docker logs test2",shell=True,capture_output=True).stdout
     with open("dockerwork/src/output.txt",'wb') as file:
+           
            file.write(output)
     ping = subprocess.run("docker container inspect test2",shell=True,capture_output=True,universal_newlines = True).stdout
-  
     if ping.index("StartedAt"):
         integern =  ping.index("StartedAt")
         integerend =  ping.index("FinishedAt")
