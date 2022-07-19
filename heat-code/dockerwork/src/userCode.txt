@@ -1,5 +1,2 @@
-def longestSub(string):
-  sub_lengths = []
-  for sub in string.split():
-    sub_lengths.append(len(set(sub)))
-  return max(sub_lengths)
+def useranswer(s):
+  return(0)
