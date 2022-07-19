@@ -11,54 +11,34 @@ app = Flask(__name__)
 def get_Current_Time():
     return {'time':time.time()}
 
-
+#this function is used to call docker, as well as return all of its inputs and outputs
 @app.route('/docker')
 def run_Docker():
+    #this is used to run docker, as well as opening the file that docker outputs to and returning the values given
     Filetesting.run_DOCKER()
-    #with open "dockerwork/src/" as file:
+    #this is the part that opens and stores the file output
     text_file = open("dockerwork/src/output.txt", "r")
     data = text_file.read()
     text_file.close()
-    print((str("hi")))
-    #print(jsonify(str(data)))
-   # print(type(jsonify(str(data))))
+  
     return jsonify(str(data))
 
+#this is the portion that takes the usercode and writes it to a text file when called
 @app.route("/senduserdata", methods=["POST"], strict_slashes=False)
 def add_Articles():
     data = request.get_json()
     with open("dockerwork/src/userCode.txt","w") as file:
         file.write(data["userCode"])
-        #print("the data is "+ str(data["userCode"]))
-        
 
     return "success"
+
+
+#this function and route stores the id of the problem into a txt file for use later
 @app.route("/problem", methods=["POST"], strict_slashes=False)
 def add_Problem():
     data = request.get_json()
-    print(type(data))
-    print(str(data))
     with open("dockerwork/src/problemId.txt","w") as file:
         file.write(str(data["problemId"]+1))
-        
-       
-        
 
     return "success"
 
-@app.route("/savetime", methods=["POST"], strict_slashes=False)
-def save_time():
-    data = time.time()
-    with open("dockerwork/src/time.txt","w") as file:
-        file.write(data["time"])
-
-    return "success"
-
-@app.route("/printtime")
-def print_time():
-    text_file = open("dockerwork/src/time.txt", "r")
-    data = text_file.read()
-    text_file.close()
-    new_time = (time.time() - data).totalminutes()
-    
-    return jsonify(str(new_time))

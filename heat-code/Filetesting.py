@@ -45,33 +45,6 @@ def run_DOCKER():
     subprocess.run("docker image rm -f dockerbuild-python-docker",shell=True)
     subprocess.run(" docker rm $(docker ps --filter status=exited -q)",shell=True)
    
-def update_Testcase(filename:str):
-
- with open(filename,"r") as reader:
-    line = reader.readlines()
-        
-        
-    with open("dockerwork/src/main.py",'w') as file:
-        for string in line:
-            file.write(string)
-
-
-
-
-
-    print("updating testcase")
-
-def update_Usercode(filename:str):
-
- with open(filename,"r") as reader:
-    line = reader.readlines()
-        
-        
-    with open("dockerwork/src/test.py",'w') as file:
-        for string in line:
-            file.write(string)
-
-    
     
 
 run_DOCKER()
