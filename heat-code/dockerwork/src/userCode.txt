@@ -1,0 +1,2 @@
+def useranswer(s):
+  return(0)

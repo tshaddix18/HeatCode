@@ -1,12 +1,13 @@
+import sys
 import os
 os.rename("userCode.txt", "userCode.py")
-import sys
 from inspect import getmembers, isfunction
 from urllib.parse import uses_relative
 from userCode import *
 
 functions_list = getmembers(sys.modules['userCode'], isfunction)
 
+# runs user code
 def userCode(input):
    temp = str()
    functionName = str()
@@ -21,24 +22,25 @@ def userCode(input):
 
    return x
 
-def problemTwo():
-    output1 = userCode([3,0,1])
-    output2 = userCode([0,1])
-    output3 = userCode([9,6,4,2,3,5,7,0,1])
-    output4 = userCode([1,4,5,6,2,3])
-    output5 = userCode([0,3,7,5,1,4,2])
+# tests the user code
+def problemOne():
+    output1 = userCode("abcabcbb")
+    output2 = userCode("bbbbb")
+    output3 = userCode("pwwkew")
+    output4 = userCode("accovottw")
+    output5 = userCode("yywercrllweo")
 
     counter = 0
-    if output1 == 2:
+    if output1 == 3:
         counter = 1
 
-    if output2 == 2:
+    if output2 == 1:
         counter += 1
     
-    if output3 == 8:
+    if output3 == 3:
         counter += 1
     
-    if output4 == 0:
+    if output4 == 5:
         counter += 1
 
     if output5 == 6:
@@ -46,6 +48,7 @@ def problemTwo():
 
     print("{}/5 tests passed\n".format(counter))
 
-problemTwo()
+problemOne()
+
 
 os.rename("userCode.py", "userCode.txt")
