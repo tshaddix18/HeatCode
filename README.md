@@ -38,6 +38,29 @@ HeatCode is a site aimed about making a more competitive framework for practicin
 
   - If you're having trouble running it, feel free to reach out or open an issue :)
 
+
+# Style guide and coding standards
+## Style
+  - All non-editor components must use light theme, with 1px light grey outline — see Reactstrap `outlined` style for details
+
+## Coding standards
+### Javascript
+
+  - React components must be functional (NOT class-based)
+
+  - React components must follow the modern convention of using hooks, rather than traditional lifecycle methods
+
+  - For syntax, everything must follow [Prettier default formatting](https://prettier.io/docs/en/options.html)
+    - Inlcuding double quotes, tab width=2, and semicolons following each line
+
+### Python
+
+  - We follow the [PEP 8](https://peps.python.org/pep-0008/) standardized style guide for all Python code
+  - Avoid duplicated code, organize in functions, and take PEP 8 as law
+
+### Contributing
+  - Members must use branches and use pull requests for code changes, no direct pushes to `main`
+
 ## Available Scripts and more information
 All the website code lives in `heat-code`. 
 In the repo directory, you can run:
