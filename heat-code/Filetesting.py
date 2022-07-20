@@ -32,10 +32,7 @@ def run_DOCKER():
         item1 = datetime.strptime(ping[integern+24:integern+37],"%H:%M:%S.%f")
         item2 = datetime.strptime(ping[integerend+25:integerend+38],"%H:%M:%S.%f")
         timechange = item2-item1
-    
-    with open("dockerwork/src/doccontinfo.txt",'w') as file:
-        
-        file.write(ping)
+   
     #this is the code that writes the runtime to a file
     with open("dockerwork/src/runtime.txt",'w') as file:
         file.write(str(timechange.total_seconds()) + " seconds")
@@ -47,4 +44,4 @@ def run_DOCKER():
    
     
 
-run_DOCKER()
+

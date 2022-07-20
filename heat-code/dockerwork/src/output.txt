@@ -1,2 +1,2 @@
-0/5 tests passed
+1/5 tests passed
 

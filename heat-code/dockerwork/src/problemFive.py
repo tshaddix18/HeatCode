@@ -7,6 +7,7 @@ from userCode import *
 
 functions_list = getmembers(sys.modules['userCode'], isfunction)
 
+# runs user code
 def userCode(s, p):
    temp = str()
    functionName = str()
@@ -22,6 +23,7 @@ def userCode(s, p):
 
    return x
 
+# tests user code
 def problemFive():
     output1 = userCode(s = "aa", p = "a")
     output2 = userCode(s = "aa", p = "a*")

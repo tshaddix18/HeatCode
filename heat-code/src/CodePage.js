@@ -12,26 +12,15 @@ import { python } from "@codemirror/lang-python";
 
 import problemInfo from "./problemInfo";
 
-// Logic for running user-submitted code through docker
-function Welcome() {
-  const [Docker, runDocker] = useState(["0/5 tests passed"]);
-  useEffect(() => {
-    fetch("/docker")
-      .then((res) => res.json())
-      .then((data) => {
-        Docker(data);
-      });
-  }, []);
-
-  return <h1>Hello, {Docker}</h1>;
-}
 const CodeCard = (props) => {
   // CodeCard: Shows info (examples, description) about a given problem
   const { problem } = props;
+  // Get examples
   const exampleNames = Object.keys(problem).filter((key) =>
     key.includes("Example")
   );
   const examples = exampleNames.map((exNum, index) => {
+    // Render all test case examples
     return (
       <>
         <CardTitle key={exNum} tag="h5">
@@ -45,7 +34,7 @@ const CodeCard = (props) => {
     <div>
       <Card outline body>
         <CardBody>
-          <CardTitle tag="h2">
+          <CardTitle tag="h3">
             Problem {problem.Number}: {problem.Name}
           </CardTitle>
           <CardText>{problem.Problem}</CardText>
@@ -55,48 +44,69 @@ const CodeCard = (props) => {
     </div>
   );
 };
+// Calculate time elapsed
+const startTime = new Date();
+const Time = () => {
+  // Time display component
+  let secs = 0;
+  let mins = 0;
+  // Get current time
+  let endTime = new Date();
+  secs = Math.round((endTime - startTime) / 1000);
+  mins = Math.round(secs / 60);
+  secs = secs % 60;
+  console.log(secs, mins);
+  return (
+    <>
+      Time elapsed:
+      {mins > 0 ? ` ${mins} minutes, ${secs} seconds` : ` ${secs} seconds`}
+    </>
+  );
+};
 // Default code when no user-inputted code
-const DEFAULT_TEXT = "# Your code here";
+const DEFAULT_TEXT = "def solution(input):\n  # Your code here ";
 
 export const CodePage = (props) => {
-  // Render code page 
+  // Render code page
+
   // States
   // userCode: contains user code from CodeMirror
   const [userCode, setUserCode] = useState(DEFAULT_TEXT);
-  const [output, setOutput] = useState("Output");
-  // Output from Docker
+  // Output from Docker (test cases passed)
   const [data, setData] = useState("0/5 tests passed");
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
 
-  // Get problemId and info from url 
+  // Get problemId and info from url
   const location = useLocation();
-
   const problemLoc = location.pathname.slice(-1);
+
   // Select problem from ID (-1 bc zero index)
   const problemId = parseInt(problemLoc) - 1;
+  // Get problem info
   const problem = problemInfo.problemInfo[problemId];
 
   const handleClick = async () => {
     // Handle problem submission click
+    //this is sued send the problem id to the flask backend via fetch request
     const todo2 = { problemId };
     const responses = await fetch("/problem", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
+      },//this sends the value problemId as a string to the flask backend
       body: JSON.stringify(todo2),
     });
     if (responses.ok) {
       console.log("it worked");
     }
-
+    // this is a fetch request to get the user code into a text file on the flask side
     const todo = { userCode };
     const response = await fetch("/senduserdata", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
+      },//this sends the value userCode as a string to the flask backend
       body: JSON.stringify(todo),
     });
     if (response.ok) {
@@ -104,7 +114,8 @@ export const CodePage = (props) => {
     }
 
     setIsLoading(true);
-
+    //this sends a fetch request to the flask backend, in which flask runs docker, and returns the
+    //output from the files run
     try {
       const response = await fetch("/docker", {
         method: "GET",
@@ -116,9 +127,8 @@ export const CodePage = (props) => {
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
       }
-
+      //this stores the docker output into the va;ue data
       const result = await response.json();
-
       setErr(JSON.stringify(result));
       setData(result);
     } catch (err) {
@@ -127,13 +137,14 @@ export const CodePage = (props) => {
       setIsLoading(false);
       console.log(data);
     }
-    // TODO: PUT FLASK SENDING CODE HERE
-    console.log(userCode);
   };
+
   // Render all code page components
   return (
     <>
+      {/* Problem info */}
       <CodeCard problem={problem} />
+      {/* Code editor */}
       <CodeMirror
         value={DEFAULT_TEXT}
         height="300px"
@@ -144,15 +155,24 @@ export const CodePage = (props) => {
         }}
       />
 
+      {/* Code submit button */}
       <div class="m-4">
         <button class="btn btn-outline-dark btn-lg" onClick={handleClick}>
           Run code
         </button>
-
-        <output>
-          here!
-          {data}
-        </output>
+        &nbsp; &nbsp;
+        {/* Output */}
+        <Card>
+          <CardBody>
+            <CardTitle tag="h4">Output </CardTitle>
+            <output>
+              <Time />
+              <pre>
+                <code>{data}</code>
+              </pre>
+            </output>
+          </CardBody>
+        </Card>
       </div>
     </>
   );

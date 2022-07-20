@@ -1,5 +1,2 @@
-# Your code here
-
-def usercodeee(s):
-    
-    return(0)
+def useranswer(s):
+  return(0)

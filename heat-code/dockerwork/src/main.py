@@ -1,8 +1,8 @@
-import sys
-#import subprocess
+# runs problem test cases 
 
 f = open("ProblemId.txt")
 problemID = f.read()
+
 
 if problemID == "1":
     exec(open('problemOne.py').read())

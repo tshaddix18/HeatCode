@@ -14,7 +14,7 @@ HeatCode is a site aimed about making a more competitive framework for practicin
 
   - Navigate to the repo: `cd HeatCode`
 
-  - Install required dependencies: `npm`, `python`, `pip`, Docker
+  - Install required dependencies: `npm`, `python`, `pip`, Docker, DockerDesktop
 
 ### 2. Run the front end
 
